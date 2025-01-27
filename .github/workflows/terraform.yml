@@ -120,43 +120,19 @@ jobs:
         with:
           terraform_version: ${{ env.TF_VERSION }}
 
-      - name: Terraform Init
-        run: cd terraform && terraform init -backend-config=env/hml/backend.tfvars
+      # - name: Terraform Init
+      #   run: cd terraform && terraform init -backend-config=env/hml/backend.tfvars
 
-      - name: Terraform ls
-        run: cd terraform && ls -lha
+      # - name: Terraform ls
+      #   run: cd terraform && ls -lha
          
-      - name: Terraform Plan
-        run: cd terraform && terraform plan -var-file=env/hml/terraform.tfvars
+      # - name: Terraform Plan
+      #   run: cd terraform && terraform plan -var-file=env/hml/terraform.tfvars
        
-      - name: Terraform Apply
+      # - name: Terraform Apply
+      #   if: github.ref == 'refs/heads/main'
+      #   run: cd terraform && terraform apply --auto-approve -var-file=env/hml/terraform.tfvars
+
+      - name: Terraform Destroy
         if: github.ref == 'refs/heads/main'
-        run: cd terraform && terraform apply --auto-approve -var-file=env/hml/terraform.tfvars
-        
-  # deploy:
-  #   needs: build
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Install Ansible
-  #       run: |
-  #         sudo apt-get update
-  #         sudo apt-get install -y ansible
-          
-  #     - name: Run Ansible Playbook
-  #       run: |
-  #         ansible-playbook -i hosts -u ubuntu --private-key=~/.ssh/teamsoft_ssh.pem nginx_playbook.yaml
-          
-  # smoke-test:
-  #   needs: deploy
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Run Smoke Tests
-  #       run: |
-  #         echo "Running smoke tests..."
-  #         # Adicione seus testes smoke
-          
-  #     - name: Notify on failure
-  #       if: failure()
-  #       run: |
-  #         echo "Notifying team about failure..."
-  #         # Adicione sua lógica de notificação
+        run: cd terraform && terraform destroy --auto-approve -var-file=env/hml/terraform.tfvars
