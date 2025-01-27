@@ -30,12 +30,12 @@ resource "aws_instance" "teamsoft_web_server" {
     Name = format("%s-ec2", var.project_name)
   }
 
-#   user_data = <<-EOF
-#               #!/bin/bash
-#               apt-get update
-#               apt-get upgrade -y
-#               apt-get install -y nginx
-#               systemctl enable nginx
-#               systemctl start nginx
-#               EOF
+  user_data = <<-EOF
+              #!/bin/bash
+              apt-get update
+              apt-get upgrade -y
+              apt-get install -y nginx
+              systemctl enable nginx
+              systemctl start nginx
+              EOF
 }
