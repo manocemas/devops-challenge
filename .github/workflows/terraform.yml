@@ -120,8 +120,8 @@ jobs:
         with:
           terraform_version: ${{ env.TF_VERSION }}
 
-      # - name: Terraform Init
-      #   run: cd terraform && terraform init -backend-config=env/hml/backend.tfvars
+      - name: Terraform Init
+        run: cd terraform && terraform init -backend-config=env/hml/backend.tfvars
 
       # - name: Terraform ls
       #   run: cd terraform && ls -lha
