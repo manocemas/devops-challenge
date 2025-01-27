@@ -125,7 +125,10 @@ jobs:
         
       - name: Terraform Plan
         run: terraform plan -var-file=terraform/env/hml/terraform.tfvars
-        
+
+      - name: Terraform ls
+        run: ls -lha
+                
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
         run: terraform apply --auto-approve -var-file=terraform/env/hml/terraform.tfvars
