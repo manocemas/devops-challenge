@@ -19,7 +19,7 @@ Nesse teste você deverá configurar um servidor, aplicar os principais recursos
 A sua tarefa consiste em configurar um servidor baseado na nuvem e instalar e configurar alguns componentes básicos.
 
 
-1. Configurar grupo de segurança na AWS
+1. Configurar grupo de segurança na AWS 
 2. Configuração da redes para o Servidor
 3. Configurar um servidor AWS (recomenda-se o freetier) executando uma versão Ubuntu LTS.
 4. Instalar e configurar qualquer software que você recomendaria em uma configuração de servidor padrão sob as perspectivas de segurança, desempenho, backup e monitorização.
@@ -62,3 +62,30 @@ Desenhar e construir uma pipeline para apoiar a entrega contínua da aplicação
 ## Suporte
 
 Use a [nossa comunidade](https://discord.gg/rdXbEvjsWu) para tirar dúvidas sobre o processo ou envie uma mensagem diretamente a um especialista no chat da plataforma. 
+
+
+# Comandos
+
+## Aplicar o terraform init apontando o backend para um bucket s3
+```bash
+terraform init -backend-config=env/hml/backend.tfvars
+```
+## Aplicar o terraform plan apontando para o ambiente de hml
+```bash
+terraform plan -var-file=env/hml/terraform.tfvars
+```
+
+## Aplicar o terraform apply apontando para o ambiente de hml
+```bash
+terraform apply --auto-approve -var-file=env/hml/terraform.tfvars
+```
+
+## Aplicar o terraform destroy apontando para o ambiente de hml
+```bash
+terraform destroy --auto-approve -var-file=env/hml/terraform.tfvars
+```
+
+## Não vai pra doc final - executar o playbook ansible
+```bash
+ansible-playbook -i hosts -u ubuntu --private-key=~/.ssh/teamsoft_ssh.pem nginx_playbook.yaml
+```
