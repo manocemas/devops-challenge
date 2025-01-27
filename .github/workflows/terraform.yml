@@ -119,7 +119,10 @@ jobs:
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: ${{ env.TF_VERSION }}
-          
+
+      - name: Terraform into dir
+        run: cd terraform/
+
       - name: Terraform Init
         run: terraform init -backend-config=terraform/env/hml/backend.tfvars
 
