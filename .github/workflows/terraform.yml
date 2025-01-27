@@ -121,17 +121,17 @@ jobs:
           terraform_version: ${{ env.TF_VERSION }}
 
       - name: Terraform Init
-        run: cd terraform && terraform init -backend-config=terraform/env/hml/backend.tfvars
+        run: cd terraform && terraform init -backend-config=env/hml/backend.tfvars
 
       - name: Terraform ls
         run: cd terraform && ls -lha
          
       - name: Terraform Plan
-        run: cd terraform && terraform plan -var-file=terraform/env/hml/terraform.tfvars
+        run: cd terraform && terraform plan -var-file=env/hml/terraform.tfvars
        
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
-        run: cd terraform && terraform apply --auto-approve -var-file=terraform/env/hml/terraform.tfvars
+        run: cd terraform && terraform apply --auto-approve -var-file=env/hml/terraform.tfvars
         
   # deploy:
   #   needs: build
