@@ -1,3 +1,4 @@
+# Monitoramento CloudWatch
 resource "aws_cloudwatch_metric_alarm" "cpu_utilization" {
   alarm_name          = "cpu-utilization"
   comparison_operator = "GreaterThanThreshold"
